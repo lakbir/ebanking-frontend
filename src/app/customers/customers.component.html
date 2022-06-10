@@ -1,1 +1,34 @@
-<p>customers works!</p>
+<div class="container mt-2">
+  <ng-container *ngIf="customers | async as listCustomers; else failure">
+    <div class="card">
+      <div class="card-header">Customers</div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let customer of customers | async">
+            <td>{{customer.id}}</td>
+            <td>{{customer.name}}</td>
+            <td>{{customer.email}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #failure>
+    <div class="card border-danger mb-3">
+      <div class="card-body text-danger">
+        <h5 class="card-title">Erreur</h5>
+        <p class="card-text">{{errorMessage}}</p>
+      </div>
+    </div>
+  </ng-template>
+</div>
