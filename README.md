@@ -1,6 +1,6 @@
 # Digital Banking Web
 
-Vidéo : https://www.youtube.com/watch?v=bOoPKctcE0s 2h12 min
+Vidéo : https://www.youtube.com/watch?v=bOoPKctcE0s 2h30 min
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.2.
 

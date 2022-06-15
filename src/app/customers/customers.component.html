@@ -3,16 +3,19 @@
     <div class="card">
       <div class="card-header">Customers</div>
       <div class="card-body">
-        <div class="row" *ngIf="searchFormGroup">
-          <div class="col-md-6 offset-md-6">
-            <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchCustomers()">
-              <div class="input-group">
-                <label class="input-group-text">Keyword</label>
-                <input type="text" formControlName="keyword" class="form-control" placeholder="Search..." />
-                <button class="btn btn-success btn-group-sm">Search</button>
-              </div>
-            </form>
-          </div>
+
+        <div class="row">
+          <div class="col-md-4"><a routerLink="/new-customer" class="btn btn-success btn-group-sm"> <i class="bi bi-plus-circle"></i> New Customer</a></div>
+          <div class="col-md-6 offset-md-2" *ngIf="searchFormGroup">
+              <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchCustomers()">
+                <div class="input-group">
+                  <label class="input-group-text">Keyword</label>
+                  <input type="text" formControlName="keyword" class="form-control" placeholder="Search..." />
+                  <button class="btn btn-success btn-group-sm"> <i class="bi bi-search"></i> </button>
+                </div>
+              </form>
+
+            </div>
         </div>
 
         <table class="table">
