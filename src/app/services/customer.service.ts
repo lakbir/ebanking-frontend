@@ -8,7 +8,7 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class CustomerService {
-  backendHost:string = environment.backendHost;
+  backendHost:string = environment.backendHost+"customers";
   constructor(private http: HttpClient) { }
 
   // not used

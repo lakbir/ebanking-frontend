@@ -1,1 +1,60 @@
-<p>accounts works!</p>
+<div class="container mt-2">
+  <div class="row">
+    <div class="col col-md-6">
+      <div class="card">
+        <div class="card-header">Accounts</div>
+        <div class="card-body">
+          <form [formGroup]="accountFormGroup" (ngSubmit)="handleSearchAccount()" >
+            <div class="input-group">
+              <label class="input-group-text">Account ID</label>
+              <input type="text" formControlName="accountId" class="form-control" placeholder="Search..." />
+              <button class="btn btn-success btn-group-sm"> <i class="bi bi-search"></i> </button>
+            </div>
+          </form>
+          <ng-container *ngIf="accountObservable | async as accountDetails">
+            <div  class="mt-3">
+              <label> Account ID : </label>
+              <label><strong>{{accountDetails.accountId}}</strong> </label>
+            </div>
+            <div class="mt-3">
+              <label> Balance : </label>
+              <label><strong>{{accountDetails.balance | number : '1.2-2'}}</strong> </label>
+            </div>
+            <table class="table mt-3">
+              <thead>
+              <th>ID</th>
+              <th>Date</th>
+              <th>Type</th>
+              <th class="text-end">Amount</th>
+              </thead>
+              <tbody>
+              <tr *ngFor="let op of accountDetails.accountOperationDTOS">
+                <td>{{op.id}}</td>
+                <td>{{op.operationDate | date : 'dd-MM-YYYY'}}</td>
+                <td>{{op.type}}</td>
+                <td class="text-end">{{op.amount | number : '1.2-2'}}</td>
+              </tr>
+              </tbody>
+            </table>
+            <ul class="nav nav-pills">
+              <li *ngFor="let item of [].constructor(accountDetails.totalPages);let page=index">
+                <a [ngClass]="page==currentPage?'btn-info text-white':'btn-outline-info'" (click)="gotoPage(page)" class="btn ms-1">{{page}}</a>
+              </li>
+            </ul>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="col col-md-6">
+      <div class="card">
+        <div class="card-header">Operations</div>
+        <div class="card-body">
+          <form>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
