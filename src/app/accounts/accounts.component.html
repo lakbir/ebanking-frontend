@@ -1,6 +1,6 @@
 <div class="container mt-2">
   <div class="row">
-    <div class="col col-md-6">
+    <div class="col col-md-10 offset-md-1">
       <div class="card">
         <div class="card-header">Accounts</div>
         <div class="card-body">
@@ -45,12 +45,51 @@
         </div>
       </div>
     </div>
-    <div class="col col-md-6">
+  </div>
+
+  <div class="row justify-content-center mt-2 mb-3" *ngIf="accountObservable">
+    <div class="col-5">
+      <div class="card">
+        <div class="card-header">Client Information</div>
+        <div class="card-body"></div>
+      </div>
+    </div>
+    <div class="col-5">
       <div class="card">
         <div class="card-header">Operations</div>
         <div class="card-body">
-          <form>
-
+          {{operationFormGroup.value | json}}
+          <form [formGroup]="operationFormGroup" (ngSubmit)="handleAccountOperation()">
+            <label class="form-label"> Operation :</label>
+            <div class="">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"  id="inlineRadio1" value="CREDIT" formControlName="operationType">
+                <label class="form-check-label" for="inlineRadio1">CREDIT</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"  id="inlineRadio2" value="DEBIT" formControlName="operationType">
+                <label class="form-check-label" for="inlineRadio2">DEBIT</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio"  id="inlineRadio3" value="VIREMENT" formControlName="operationType">
+                <label class="form-check-label" for="inlineRadio3">VIREMENT</label>
+              </div>
+            </div>
+            <div class="mt-3">
+              <label class="form-label"> Amount : </label>
+              <input type="text" formControlName="amount" class="form-control" >
+            </div>
+            <div class="mt-3">
+              <label class="form-label"> Description : </label>
+              <input type="text" formControlName="desc" class="form-control" >
+            </div>
+            <div class="mt-3">
+              <label class="form-label"> Account Destination : </label>
+              <input type="text" formControlName="accountDestination" class="form-control" >
+            </div>
+            <div class="mt-3">
+              <button class="btn btn-success btn-group-sm float-end"> <i class="bi bi-check"></i> Save Operation</button>
+            </div>
           </form>
         </div>
       </div>

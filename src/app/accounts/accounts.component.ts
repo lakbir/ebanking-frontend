@@ -40,4 +40,8 @@ export class AccountsComponent implements OnInit {
     this.currentPage = page;
     this.handleSearchAccount();
   }
+
+  handleAccountOperation() {
+
+  }
 }
