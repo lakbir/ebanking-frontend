@@ -42,6 +42,47 @@ export class AccountsComponent implements OnInit {
   }
 
   handleAccountOperation() {
+    let accountId :string = this.accountFormGroup.value.accountId;
+    if(this.operationFormGroup.value.operationType == 'DEBIT'){
+      this.accountService.debit(accountId, this.operationFormGroup.value.amount, this.operationFormGroup.value.desc).subscribe({
+        next : (data) => {
+          alert("Success Debit");
+          this.operationFormGroup.reset();
+          this.handleSearchAccount();
+        },
+        error : (err) => {
+          console.error(err);
+          alert("Erreur Debit")
+        }
+        }
+      );
+    }else if (this.operationFormGroup.value.operationType == 'CREDIT'){
+      this.accountService.credit(accountId, this.operationFormGroup.value.amount, this.operationFormGroup.value.desc).subscribe({
+          next : (data) => {
+            alert("Success CREDIT");
+            this.operationFormGroup.reset();
+            this.handleSearchAccount();
+          },
+          error : (err) => {
+            console.error(err);
+            alert("Erreur CREDIT")
+          }
+        }
+      );
+    }else if (this.operationFormGroup.value.operationType == 'VIREMENT'){
+      this.accountService.virement(accountId,this.operationFormGroup.value.accountDestination, this.operationFormGroup.value.amount, this.operationFormGroup.value.desc).subscribe({
+          next : (data) => {
+            alert("Success VIREMENT");
+            this.operationFormGroup.reset();
+            this.handleSearchAccount();
+          },
+          error : (err) => {
+            console.error(err);
+            alert("Erreur VIREMENT")
+          }
+        }
+      );
+    }
 
   }
 }
