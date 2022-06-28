@@ -11,6 +11,36 @@
               <button class="btn btn-success btn-group-sm"> <i class="bi bi-search"></i> </button>
             </div>
           </form>
+
+          <ng-template #errorTemplate>
+            <ng-container *ngIf="errorMessage; else loading">
+              <div class="panel panel-danger">
+                <div class="panel-heading">Account Errror</div>
+                <div class="panel-body">{{errorMessage}}</div>
+              </div>
+            </ng-container>
+            <ng-template #loading class="text-center">
+              <div class="spinner-grow text-primary" role="status">
+                <span class="sr-only">...</span>
+              </div>
+              <div class="spinner-grow text-secondary" role="status">
+                <span class="sr-only">...</span>
+              </div>
+              <div class="spinner-grow text-success" role="status">
+                <span class="sr-only">...</span>
+              </div>
+              <div class="spinner-grow text-danger" role="status">
+                <span class="sr-only">...</span>
+              </div>
+              <div class="spinner-grow text-warning" role="status">
+                <span class="sr-only">...</span>
+              </div>
+              <div class="spinner-grow text-info" role="status">
+                <span class="sr-only">...</span>
+              </div>
+            </ng-template>
+          </ng-template>
+
           <ng-container *ngIf="accountObservable | async as accountDetails">
             <div  class="mt-3">
               <label> Account ID : </label>
@@ -58,7 +88,6 @@
       <div class="card">
         <div class="card-header">Operations</div>
         <div class="card-body">
-          {{operationFormGroup.value | json}}
           <form [formGroup]="operationFormGroup" (ngSubmit)="handleAccountOperation()">
             <label class="form-label"> Operation :</label>
             <div class="">
