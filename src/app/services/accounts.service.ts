@@ -8,7 +8,7 @@ import {AccountDetails} from "../model/account.model";
   providedIn: 'root'
 })
 export class AccountsService {
-  backendHost:string = environment.backendHost+"accounts";
+  backendHost:string = "https://ebankingbackend.herokuapp.com/accounts";
   constructor( private http: HttpClient) { }
 
   public getAccountById(accountId: string, page: number, size: number): Observable<AccountDetails>{

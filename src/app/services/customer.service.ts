@@ -8,7 +8,7 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class CustomerService {
-  backendHost:string = environment.backendHost+"customers";
+  backendHost:string = "https://ebankingbackend.herokuapp.com/customers";
   constructor(private http: HttpClient) { }
 
   // not used
